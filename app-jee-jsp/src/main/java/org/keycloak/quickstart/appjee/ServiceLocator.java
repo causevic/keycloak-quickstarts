@@ -37,6 +37,7 @@ public class ServiceLocator {
 
             uri = System.getenv("SERVICE_URL");
             if (uri != null) {
+                System.out.println("# # # # # # # # # # # # # # # # # #Using env var: " + System.getenv("SERVICE_URL"));
                 return new URL(uri);
             }
 
@@ -46,13 +47,15 @@ public class ServiceLocator {
             String schema = requestUrl.getProtocol();
             String port = requestUrl.getPort() != -1 ? (":" + requestUrl.getPort()) : "";
 
-            uri = schema + "://" + host + port + "/service";
+            uri = schema + "://" + host + port + "";
+            System.out.println("# # # # # # # # # # # # # # # # # Using URI local: " + System.getenv("SERVICE_URL"));
+            
             return new URL(uri);
 
         } catch (MalformedURLException e) {
             throw new RuntimeException("Malformed url: " + uri);
         } finally {
-            System.out.println("Service url: " + uri);
+            System.out.println("# # # # # # # # # # ## # # # # # # # Service url: " + uri);
         }
     }
 }
