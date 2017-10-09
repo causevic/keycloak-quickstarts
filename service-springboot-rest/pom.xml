@@ -12,7 +12,7 @@
     <artifactId>service-springboot</artifactId>
     <description>Spring Boot Keycloak Product Service</description>
     <properties>
-        <springboot-version>1.5.3.RELEASE</springboot-version>
+        <springboot-version>1.5.7.RELEASE</springboot-version>
         <arquillian-managed>false</arquillian-managed>
     </properties>
     <dependencyManagement>
@@ -57,6 +57,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot-version}</version>
             </plugin>
         </plugins>
     </build>
