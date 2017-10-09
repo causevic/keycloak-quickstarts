@@ -33,7 +33,7 @@ var AppComponent = (function () {
     function AppComponent(http, kc) {
         this.http = http;
         this.kc = kc;
-        this.serviceUrl = 'http://127.0.0.1:8080/service/';
+        this.serviceUrl = 'http://127.0.0.1:8081/';
         this.errorClass = '';
     }
     AppComponent.prototype.authenticated = function () {
@@ -55,7 +55,7 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.handleResponse = function (res, comp) {
         comp.errorClass = '';
-        comp.message = 'Message: ' + res.json().message;
+        comp.message = 'Message: ' + res.json().products[0];
     };
     AppComponent.prototype.handleServiceError = function (error, comp) {
         comp.errorClass = 'error';

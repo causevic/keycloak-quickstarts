@@ -18,18 +18,22 @@
 package org.keycloak.quickstart.springboot.web;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+
+import org.keycloak.quickstart.springboot.model.ProductResponse;
 import org.keycloak.quickstart.springboot.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@CrossOrigin(origins = "http://localhost:8080")	
 @RestController
 public class ProductServiceController {
 
@@ -38,9 +42,23 @@ public class ProductServiceController {
         
     private @Autowired HttpServletRequest request;
 
+	
 	@RequestMapping(value = "/products", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<String> handleCustomersRequest(Principal principal) {
-            return productService.getProducts();
+	public ProductResponse handleCustomersRequest(Principal principal) {
+		List<String> productList = productService.getProducts();
+	    return new ProductResponse(productList); 
 	}
-       
+
+	@RequestMapping(value = "/products", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ProductResponse handleCustomersPostRequest(Principal principal) {
+		List<String> productList = productService.getProducts();
+	    return new ProductResponse(Arrays.asList("THETA")); 
+	}
+
+	@RequestMapping(value = "/public", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ProductResponse handlePublicCustomersRequest(Principal principal) {
+		List<String> productList =  productService.getPublicProducts();
+		return new ProductResponse(productList); 
+
+	}
 }

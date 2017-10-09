@@ -86,16 +86,16 @@ public class ArquillianJeeJspTest {
         }
     }
 
-    @Deployment(name= APP_SERVICE, order = 1, testable = false)
-    public static Archive<?> createTestArchive1() throws IOException {
-        return ShrinkWrap.createFromZipFile(WebArchive.class,
-                new File("../service-jee-jaxrs/target/service.war"))
-                .addAsWebInfResource(
-                        new StringAsset(createClient(
-                                ClientBuilder.create(APP_SERVICE).accessType(BEARER_ONLY))), "keycloak.json");
-    }
+    // @Deployment(name= APP_SERVICE, order = 1, testable = false)
+    // public static Archive<?> createTestArchive1() throws IOException {
+    //     return ShrinkWrap.createFromZipFile(WebArchive.class,
+    //             new File("../service-jee-jaxrs/target/service.war"))
+    //             .addAsWebInfResource(
+    //                     new StringAsset(createClient(
+    //                             ClientBuilder.create(APP_SERVICE).accessType(BEARER_ONLY))), "keycloak.json");
+    // }
 
-    @Deployment(name= APP_NAME, order = 2, testable = false)
+    @Deployment(name= APP_NAME, order = 1, testable = false)
     public static Archive<?> createTestArchive2() throws IOException {
         File[] files = Maven.resolver().loadPomFromFile("pom.xml")
                     .importRuntimeDependencies().resolve().withTransitivity().asFile();

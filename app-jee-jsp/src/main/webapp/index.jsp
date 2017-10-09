@@ -52,7 +52,7 @@
 
             <div class="content">
                 <button name="publicBtn" onclick="location.href = 'index.jsp?action=public'">Invoke Public</button>
-                <button name="securedBtn" onclick="location.href = 'index.jsp?action=secured'">Invoke Secured</button>
+                <button name="securedBtn" onclick="location.href = 'index.jsp?action=products'">Invoke Secured</button>
                 <button name="adminBtn" onclick="location.href = 'index.jsp?action=admin'">Invoke Admin</button>
 
                 <div class="message" id="message"><% out.print(controller.getMessage(request)); %></div>

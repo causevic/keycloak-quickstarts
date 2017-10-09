@@ -25,7 +25,12 @@ public class ProductService {
 
     public List<String> getProducts() {
         return Arrays.asList(
-                "alpha", "bravo", "charlie", "delta", "echo", "foxtrot");
+                "alpha".toUpperCase(), "bravo".toUpperCase(), "charlie".toUpperCase(), "delta".toUpperCase(), "echo".toUpperCase(), "foxtrot".toUpperCase());
+    }
+
+    public List<String> getPublicProducts() {
+        return Arrays.asList(
+                "alpha", "bravo", "charlie");
     }
 
 }

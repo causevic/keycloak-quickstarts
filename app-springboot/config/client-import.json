@@ -1,12 +1,12 @@
 {
     "clientId": "app-springboot",
-    "rootUrl": "http://localhost:8080/app-html5",
+    "rootUrl": "http://localhost:8090/app-springboot",
     "enabled": true,
     "redirectUris": [
-        "http://localhost:8080/app-springboot/*"
+        "http://localhost:8090/app-springboot/*"
     ],
     "webOrigins": [
-        "http://localhost:8080"
+        "http://localhost:8090"
     ],
     "publicClient": true
 }
