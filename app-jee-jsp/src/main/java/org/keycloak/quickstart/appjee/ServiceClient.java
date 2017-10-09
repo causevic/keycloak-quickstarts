@@ -27,6 +27,7 @@ import org.keycloak.util.JsonSerialization;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Client that calls the service.
@@ -35,17 +36,31 @@ import java.io.InputStream;
  */
 public class ServiceClient {
 
-    public static class MessageBean {
-        private String message;
+   
+public static class ProductResponse 
+{
+    private List<String> products;
 
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
+    public ProductResponse(List<String> productList) {
+        products = productList;
     }
+
+    public ProductResponse()
+    {}
+	/**
+	 * @return the products
+	 */
+	public List<String> getProducts() {
+		return products;
+	}
+
+	/**
+	 * @param products the products to set
+	 */
+	public void setProducts(List<String> products) {
+		this.products = products;
+	}
+}
 
     public static class Failure extends Exception {
         private int status;
@@ -76,8 +91,10 @@ public class ServiceClient {
     public static String callService(HttpServletRequest req, KeycloakSecurityContext session, String action) throws Failure {
         CloseableHttpClient client = null;
         try {
-        	client = createHttpClient();
-            HttpGet get = new HttpGet(getServiceUrl(req) + "/" + action);
+            client = createHttpClient();
+            String getUri = getServiceUrl(req) + "/" + action;
+            System.out.println("# # # # # # # # # # Get Service URI: " + getUri);
+            HttpGet get = new HttpGet(getUri);
             if (session != null) {
                 get.addHeader("Authorization", "Bearer " + session.getTokenString());
             }
@@ -92,8 +109,8 @@ public class ServiceClient {
             HttpEntity entity = response.getEntity();
             InputStream is = entity.getContent();
             try {
-                MessageBean message = JsonSerialization.readValue(is, MessageBean.class);
-                return message.getMessage();
+                ProductResponse message = JsonSerialization.readValue(is, ProductResponse.class);
+                return message.getProducts().get(0);
             } finally {
                 is.close();
             }

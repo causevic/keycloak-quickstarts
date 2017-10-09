@@ -43,12 +43,16 @@ public class ServiceLocator {
 
             URL requestUrl = new URL(req.getRequestURL().toString());
 
+            // String host = requestUrl.getHost();
+            // String schema = requestUrl.getProtocol();
+            // String port = requestUrl.getPort() != -1 ? (":" + requestUrl.getPort()) : "";
+
             String host = requestUrl.getHost();
             String schema = requestUrl.getProtocol();
-            String port = requestUrl.getPort() != -1 ? (":" + requestUrl.getPort()) : "";
+            String port = ":8081";
 
             uri = schema + "://" + host + port + "";
-            System.out.println("# # # # # # # # # # # # # # # # # Using URI local: " + System.getenv("SERVICE_URL"));
+            System.out.println("# # # # # # # # # # # # # # # # # Using URI local: " + uri);
             
             return new URL(uri);
 
