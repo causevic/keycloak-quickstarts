@@ -117,6 +117,12 @@ One more step, if you want to access the examples with the admin user you need t
 <a id="wildfly"></a>Start and Configure the WildFly Server
 --------------------------------------------------------------
 
+NOTE: Install Wildfly on Mac with Homebrew:
+
+````
+brew install wildfly-as
+````
+
 Before starting the WildFly Server start by extracting the Keycloak client adapter into it.
 
 For WildFly 9 or 10 extract `keycloak-wildfly-adapter-dist-2.5.0.Final.zip` into WILDFLY_HOME and for WildFly 8 extract
